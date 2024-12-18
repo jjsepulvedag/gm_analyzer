@@ -23,6 +23,7 @@ REFERENCES:
 
 """
 import numpy as np
+import gm_formatSeries
 
 def newmarkB_constAcc(pt, t, delta_t, m, c, k, u_0, dudt_0):
     """
@@ -54,7 +55,7 @@ def newmarkB_constAcc(pt, t, delta_t, m, c, k, u_0, dudt_0):
 
     # Initial computations
     d2udt2_0 = (1/m)*(pt[0] -c*dudt_0 - k*u_0)
-    k_bar = k + m/(beta*dt**2) + c*gamma/(beta*delta_t)
+    k_bar = k + m/(beta*delta_t**2) + c*gamma/(beta*delta_t)
     a = c*gamma/beta + m/(beta*delta_t)
     b = m/(2*beta) + c*delta_t*(gamma/(2*beta) - 1)
 
@@ -105,5 +106,17 @@ def newmarkB_linAcc():
     return None
 
 
+# ------------------------- End of callable functions ------------------------ #
+
 if __name__=='__main__':
-    
+
+    filePath = './sample_rcrds'
+    fileName = 'RSN808_LOMAP_TRI000.AT2'
+
+    gm_rcrd, gm_npts, gm_dt = gm_formatSeries.read_NGAWest2(filePath, fileName)
+
+    prds = np.linspace(0.01, 10, 100)
+
+    u = newmarkB_constAcc(pt=gm_rcrd, t=prds, delta_t=gm_dt, m=1, c=0.05, k=1, u_0=0, dudt_0=0)
+
+    print(u)
