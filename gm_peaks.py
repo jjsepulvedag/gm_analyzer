@@ -20,12 +20,12 @@ REFERENCES:
 """
 
 import numpy as np
+import gm_formatSeries
 
 def PGA(accs):
     '''
     INPUT
         accs: ground-motion acceleration
-        dt  : delta of time
     OUTPUT: 
         PGA:  peak ground acceleration
     '''
@@ -36,7 +36,6 @@ def PGV(vels):
     '''
     INPUT
         vels: ground-motion velocities
-        dt  : delta of time
     OUTPUT: 
         PGV:  peak ground velocity
     '''
@@ -47,7 +46,6 @@ def PGD(disp):
     '''
     INPUT
         disp: ground-motion displacements
-        dt  : delta of time
     OUTPUT: 
         PGD:  peak ground displacement
     '''
@@ -59,6 +57,18 @@ def PGD(disp):
 
 if __name__=='__main__':
 
-    print('Hello World!')
+    filePath = './sample_rcrds'
+    fileAcc = 'RSN808_LOMAP_TRI000.AT2'
+    fileVel = 'RSN808_LOMAP_TRI000.VT2'
+    fileDis = 'RSN808_LOMAP_TRI000.DT2'
 
+    gm_acc, gm_npts, gm_dt = gm_formatSeries.read_NGAWest2(filePath, fileAcc)
+    gm_vel, gm_npts, gm_dt = gm_formatSeries.read_NGAWest2(filePath, fileVel)
+    gm_dis, gm_npts, gm_dt = gm_formatSeries.read_NGAWest2(filePath, fileDis)
+
+    pga = PGA(gm_acc)
+    pgv = PGV(gm_vel)
+    pgd = PGD(gm_dis)
+
+    print('PGA: {0}, PGV: {1}, PGD:{2}'.format(pga, pgv, pgd))
 

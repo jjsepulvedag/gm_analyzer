@@ -1,7 +1,7 @@
-def conv_M02Mw()
+def conv_M02Mw():
     
     return None
 
-# def conv_dynes2kgcm2():
-    
-#     return None
+def cms2_2_g(gm_record):
+    gm_gravity = gm_record*(1/(100*9.81))
+    return gm_gravity
