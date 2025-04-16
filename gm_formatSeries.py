@@ -35,9 +35,33 @@ def read_COSMOS(fileLoc, fileName):
     
     return None
 
-def read_GP2010(fileLoc, fileName):
+def read_GP2010(loc, fname):
+    """
+    Convenience function for reading files in the Graves and Pitarka format
+    INPUT:
+        - loc: location of the ground-motion time series 
+        - fname: file name
+    OUTPUT:
+        - data: ground-motion time series
+        - num_pts: number of points of the waveform 
+    """
 
-    return None
+    with open("/".join([loc, fname]), 'r') as f:
+        lines = f.readlines()
+
+    data = []
+
+    for line in lines[2:]:
+        data.append([float(val) for val in line.split()])
+
+    data=np.concatenate(data)
+
+    line1=lines[1].split()
+    num_pts=float(line1[0])
+    dt=float(line1[1])
+    shift=float(line1[4])
+
+    return data, num_pts, dt, shift
 
 
 

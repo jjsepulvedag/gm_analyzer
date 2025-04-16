@@ -20,7 +20,7 @@ REFERENCES:
 """
 
 import numpy as np
-import gm_formatSeries
+# import gm_formatSeries
 
 def PGA(accs):
     '''

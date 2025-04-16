@@ -1,5 +1,5 @@
 import numpy as np
-import gm_formatSeries
+# import gm_formatSeries
 import matplotlib.pyplot as plt
 
 def AI(gm_rcrd, dt):
