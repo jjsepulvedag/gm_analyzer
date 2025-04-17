@@ -1,11 +1,38 @@
 import numpy as np
-from gm_analyzer import gm_formatSeries
+# import gm_formatSeries
+import gm_analyzer.gm_formatSeries as gm_formatSeries
 import matplotlib.pyplot as plt
 
 def AI(gm_rcrd, dt):
     '''
     INPUT:
-        - gm_rcrd : ground-otion acceleration record (gravity)
+        - gm_rcrd : ground-motion acceleration record (m/s)
+        - dt      : time step
+    OUTPUT:
+        - arias_intensity: 
+    '''
+    gvt = 9.81 # m/s
+    ai = (np.pi/(2*gvt))*np.sum(gm_rcrd**2)*dt
+
+    return ai
+
+def CAV(gm_rcrd, dt):
+    '''
+    INPUT:
+        - gm_rcrd : ground-motion acceleration record (g)
+        - dt      : time step
+    OUTPUT:
+        - 
+    '''
+
+    cav = np.sum(np.abs(gm_rcrd))*dt
+    
+    return cav
+
+def vAI(gm_rcrd, dt):
+    '''
+    INPUT:
+        - gm_rcrd : ground-motion acceleration record (gravity)
         - dt      : time step
     OUTPUT:
         - arias_intensity: 
@@ -22,7 +49,7 @@ def AI(gm_rcrd, dt):
 
     return arias_intensity
 
-def CAV(gm_rcrd, dt):
+def vCAV(gm_rcrd, dt):
     '''
     INPUT:
         - 

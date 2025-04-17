@@ -11,7 +11,7 @@ def g_2_cms2(gm_record):
     return gm_cms2
 
 def cms2_2_g(gm_record):
-    # Converts units of a ground-motion record -> cm/s2 to gravity
+    # Converts units of a ground-motion rec ord -> cm/s2 to gravity
     gm_gravity = gm_record/981
     return gm_gravity
 

@@ -26,7 +26,8 @@ REFERENCES:
 """
 
 import numpy as np
-import gm_formatSeries
+from gm_analyzer import gm_formatSeries
+# import gm_formatSeries
 import matplotlib.pyplot as plt
 
 def newmarkB_constAcc(pt, t, delta_t, m, c, k, u_0, dudt_0):

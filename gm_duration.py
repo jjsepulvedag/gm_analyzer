@@ -18,8 +18,9 @@ REFERENCES:
 """
 
 import numpy as np
-import gm_cIMs
-import gm_formatSeries
+from gm_analyzer import gm_CIMs, gm_formatSeries
+# import gm_CIMs
+# import gm_formatSeries
 
 
 def D_575(gm_rcrd, dt):
@@ -30,7 +31,7 @@ def D_575(gm_rcrd, dt):
     OUTPUT:
         - D_575   : 5-75% significant duration
     '''
-    arias_intesity = gm_cIMs.AI(gm_rcrd, dt)
+    arias_intesity = gm_CIMs.vAI(gm_rcrd, dt)
     normalized_AI = arias_intesity/np.max(arias_intesity)
 
     idx_d5 = np.argmin(np.abs(normalized_AI-0.05))
@@ -49,7 +50,7 @@ def D_595(gm_rcrd, dt):
     OUTPUT:
         - D_595   : 5-95% significant duration
     '''
-    arias_intesity = gm_cIMs.AI(gm_rcrd, dt)
+    arias_intesity = gm_CIMs.vAI(gm_rcrd, dt)
     normalized_AI = arias_intesity/np.max(arias_intesity)
 
     idx_d5 = np.argmin(np.abs(normalized_AI-0.05))
